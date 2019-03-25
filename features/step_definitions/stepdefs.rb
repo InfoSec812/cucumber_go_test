@@ -10,5 +10,4 @@ end
 Then("I should see a username returned") do
   expect(@ocClient).to be true
   expect(@success).to eq(0)
-  expect(@username).to match(/josphill/)
 end
