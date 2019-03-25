@@ -54,6 +54,7 @@ spec:
       steps {
         container('jenkins-slave-ruby') {
           sh '''
+            source /opt/rh/rh-ruby24/enable
             bundler install --path=GEMS
           '''
         }
@@ -63,12 +64,8 @@ spec:
         steps {
           container('jenkins-slave-ruby') {
             sh '''
-            echo ${OPENSHIFT_BUILD_NAME}
-            /usr/local/bin/generate_container_user
-            cat /etc/passwd
-            echo 'ssh -i /etc/git-creds/ssh-privatekey -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no $*' >> ssh
-            chmod +x ./ssh
-            GIT_SSH='./ssh' git clone git@gitlab.com:mcc-labs/example-oc-cucumber-test.git
+            source /opt/rh/rh-ruby24/enable
+            cucumber test
             '''
     //            git branch: 'master', credentialsId: 'labs-ci-cd-mcc-jenkins', url: 'git@gitlab.com:mcc-labs/example-oc-cucumber-test.git'
             }
