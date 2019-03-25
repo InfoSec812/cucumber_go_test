@@ -55,7 +55,7 @@ spec:
         container('jenkins-slave-ruby') {
           sh '''
             source /opt/rh/rh-ruby24/enable
-            bundler install --path=GEMS
+            bundler install
           '''
         }
       }
