@@ -65,6 +65,7 @@ spec:
           container('jenkins-slave-ruby') {
             sh '''
             source /opt/rh/rh-ruby24/enable
+            export PATH=${PWD}/GEMS/ruby/2.4.0/bin:${PATH}
             cucumber test
             '''
     //            git branch: 'master', credentialsId: 'labs-ci-cd-mcc-jenkins', url: 'git@gitlab.com:mcc-labs/example-oc-cucumber-test.git'
